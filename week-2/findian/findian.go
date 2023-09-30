@@ -3,17 +3,23 @@ package main
 import (
 	"fmt"
 	"strings"
+	"bufio"
+	"os"
 )
 
 func main() {
-	var input string
+	// var input string
 	fmt.Print("Please enter a word: ")
 
-	fmt.Scan(&input)
+	// fmt.Scanln(&input)
 
-	var loweredInput = strings.ToLower(input)
+	reader := bufio.NewReader(os.Stdin)
 
-	if loweredInput[0] == 'i' && input[len(loweredInput) -1] == 'n' && strings.Contains(loweredInput, "a") {
+	input, _ := reader.ReadString('\n')
+	loweredInput := strings.ToLower(input)
+	trimmedInput := strings.TrimSpace(loweredInput)
+
+	if trimmedInput[0] == 'i' && trimmedInput[len(trimmedInput) -1] == 'n' && strings.Contains(trimmedInput, "a") {
 		fmt.Println("Found!\n")
 	} else {
 		fmt.Println("Not Found!\n")
